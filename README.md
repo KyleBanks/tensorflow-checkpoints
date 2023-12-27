@@ -7,3 +7,20 @@
 3. `docker run -it -v $(pwd)/frame-extraction:/data frame-extraction`
 4. Retrieve the split video frames from [frame-extraction/frames/](./frame-extraction/frames), and place in the appropriate [training-images/](./training-images) subdirectory.
 
+## Install
+
+**TODO: setup a docker image to avoid local installation**
+
+The following assumes you have Python installed (I'm using v3.11.7, v3.12 has issues) as well as Pip.
+
+Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+Execute: 
+
+```
+python main.py
+```

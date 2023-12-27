@@ -77,7 +77,6 @@ print('Validation accuracy: {:.2f}'.format(accuracy_val))
 loss_test, accuracy_test = model.evaluate(test_ds)
 print('Test accuracy: {:.2f}'.format(accuracy_test))
 
-
 # run some predictions 
 def predict(filename): 
   path = tf.keras.utils.get_file(filename, origin='file://' + os.path.abspath("./test-images/" + filename))
