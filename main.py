@@ -56,6 +56,7 @@ model = tf.keras.Sequential([
 
 base_learning_rate = 0.0001
 model.compile(
+  # only using Legacy as I was training on an M1 mac
   optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=base_learning_rate),
   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
   metrics=['accuracy']
