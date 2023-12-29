@@ -7,11 +7,10 @@ import tensorflow_hub as hub
 
 pixels = 224
 
-# load datasets
+# Load the datasets 
 seed = 1 
 shuffle_value = True
 validation_split = 0.3
-
 directory = 'file://' + os.path.abspath("./training-images")
 
 def get_dataset(subset):
@@ -28,15 +27,17 @@ def get_dataset(subset):
 train_ds = get_dataset('training')
 val_ds = get_dataset('validation')
 
-# split out some test data from the validation set
+# Split out some test data from the validation set to be kept on the side
 val_batches = tf.data.experimental.cardinality(val_ds)
 test_ds = val_ds.take((2*val_batches) // 3)
 val_ds = val_ds.skip((2*val_batches) // 3)
 
+# Determine the class names (checkpoints) we're training for
 class_names = train_ds.class_names
 print('Class Names: {}'.format(class_names))
 num_classes = len(class_names)
 
+# Define the model
 model = tf.keras.Sequential([
   tf.keras.layers.RandomFlip('horizontal'),
   tf.keras.layers.RandomRotation(0.2),
@@ -62,6 +63,7 @@ model.compile(
   metrics=['accuracy']
 )
 
+# Train over 5 epochs 
 initial_epochs = 5
 history = model.fit(
   train_ds,
@@ -69,16 +71,16 @@ history = model.fit(
   validation_data=val_ds
 )
 
-# evaluate validation data
+# Evaluate predictions on the validation dataset
 loss_val, accuracy_val = model.evaluate(val_ds)
 print('Validation loss: {:.2f}'.format(loss_val))
 print('Validation accuracy: {:.2f}'.format(accuracy_val))
 
-# evaluate test data
+# Evaluate predictions on the test dataset
 loss_test, accuracy_test = model.evaluate(test_ds)
 print('Test accuracy: {:.2f}'.format(accuracy_test))
 
-# run some predictions 
+# Run some final predictions  
 def predict(filename): 
   path = tf.keras.utils.get_file(filename, origin='file://' + os.path.abspath("./test-images/" + filename))
 
