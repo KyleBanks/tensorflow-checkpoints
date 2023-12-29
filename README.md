@@ -2,7 +2,7 @@
 
 This repository demonstrates how you could potentially use a convolutional neural network classifier to determine game save checkpoints from a video game screenshot, allow screenshots and photo mode to be used as save files. This was a fun technical experiement but is ultimately impractical for a number of reasons.
 
-For more on why it's impractical and a video walkthrough of this project, as well as the alternative approaches that were taken including steganography, EXIF tags and QR codes, [check out my YouTube video on the subject, here.](https://youtu.be/0aBy8wLnpQ8)
+For more on why it's impractical and a video walkthrough of this project, as well as the alternative approaches that were taken including steganography, EXIF tags and QR codes, [check out my YouTube video on the subject here.](https://youtu.be/0aBy8wLnpQ8)
 
 ## Preparing Training Data from Videos
 
